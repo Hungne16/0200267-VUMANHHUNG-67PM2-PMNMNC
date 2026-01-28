@@ -46,3 +46,19 @@ use App\Http\Controllers\AuthController;
 
 Route::get('/signin', [AuthController::class, 'SignIn'])->name('auth.signin');
 Route::post('/signin', [AuthController::class, 'CheckSignIn'])->name('auth.check');
+
+// Route de nhap tuoi
+Route::get('/input-age', function () {
+    return view('input_age');
+})->name('age.input');
+
+// Route xy ly luu tuoi vao session
+Route::post('/input-age', function (Illuminate\Http\Request $request) {
+    $request->session()->put('age', $request->input('age'));
+    return redirect()->route('admin.page');
+});
+
+// Route duoc bao ve boi middleware CheckAge, chi 18 tuoi moi vao duoc
+Route::get('/admin', function () {
+    return "Chào mừng đến với trang admin (18+)";
+})->middleware('check.age')->name('admin.page');
