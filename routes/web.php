@@ -62,3 +62,7 @@ Route::post('/input-age', function (Illuminate\Http\Request $request) {
 Route::get('/admin', function () {
     return "Chào mừng đến với trang admin (18+)";
 })->middleware('check.age')->name('admin.page');
+
+use App\Http\Controllers\ProductController;
+
+Route::get('/product', [ProductController::class, 'index'])->name('product.index');
