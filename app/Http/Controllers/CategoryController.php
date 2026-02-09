@@ -68,7 +68,7 @@ $listCate = Category::where('is_delete', 0)->get();
 
     /**
      * Remove the specified resource from storage.
-     */
+     */git add .
     public function destroy(Category $category)
     {
         $category = Category::findOrFail($id);
